@@ -5,6 +5,8 @@ rspamd/dbdata/
 postgres-data/
 redis-data/
 detonator/screenshots/
+detonator/.venv/
+.pytest_cache/
 gophish/data/
 node_modules/
 __pycache__/

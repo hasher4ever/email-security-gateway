@@ -90,24 +90,36 @@ services:
       postgres:
         condition: service_healthy
 
-  # ─── Phase 2 (uncomment when ready) ────────────────────────────────────
-  # detonator:
-  #   build: ./detonator
-  #   restart: unless-stopped
-  #   read_only: true
-  #   cap_drop: [ALL]
-  #   security_opt:
-  #     - no-new-privileges:true
-  #   tmpfs:
-  #     - /tmp
-  #     - /var/run
-  #   environment:
-  #     PORT: 7000
-  #     TIMEOUT_SEC: ${DETONATOR_TIMEOUT_SEC}
-  #     USER_AGENT: ${DETONATOR_USER_AGENT}
-  #     REDIS_HOST: ${REDIS_HOST}
-  #   networks:
-  #     - detonator-egress    # isolated egress-only network, no internal access
+  # ─── Phase 2 ───────────────────────────────────────────────────────────
+  detonator:
+    build: ./detonator
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+      - /var/run
+    environment:
+      PORT: 7000
+      TIMEOUT_SEC: ${DETONATOR_TIMEOUT_SEC}
+      DETONATOR_USER_AGENT: ${DETONATOR_USER_AGENT}
+      CACHE_TTL_SEC: ${CACHE_TTL_SEC}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      REDIS_HOST: ${REDIS_HOST}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - default
+      - detonator-egress
 
   # ─── Phase 3 (uncomment when ready) ────────────────────────────────────
   # gophish:
@@ -137,7 +149,8 @@ volumes:
   rspamd-data:
   # gophish-data:
 
-# networks:
-#   detonator-egress:
-#     driver: bridge
-#     internal: false   # outbound web allowed; isolated from default network
+networks:
+  default:
+  detonator-egress:
+    driver: bridge
+    internal: false   # outbound web allowed; isolated from default network

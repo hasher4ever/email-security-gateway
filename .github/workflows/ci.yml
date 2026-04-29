@@ -29,6 +29,24 @@ jobs:
       - name: Lint
         run: ruff check feeds/
 
+  detonator-tests:
+    name: Detonator pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install detonator deps (no Playwright browsers)
+        run: |
+          cd detonator
+          pip install --upgrade pip
+          pip install fastapi==0.115.* 'uvicorn[standard]==0.30.*' httpx==0.27.* \
+                      tldextract==5.1.* structlog==24.4.* \
+                      pytest pytest-asyncio playwright==1.47.*
+      - name: Run pytest
+        run: cd detonator && python -m pytest -q
+
   compose-validate:
     name: docker compose config
     runs-on: ubuntu-latest
