@@ -1,0 +1,48 @@
+# Postfix main.cf — Email Security Gateway front door
+# Rendered from template at container start; do not edit the rendered copy.
+
+# ─── Identity ──────────────────────────────────────────────────────────
+myhostname     = ${GATEWAY_HOSTNAME}
+mydomain       = ${CORP_DOMAIN}
+myorigin       = $mydomain
+mydestination  = $myhostname, localhost.$mydomain, localhost
+inet_interfaces = all
+inet_protocols  = ipv4
+
+# ─── Networks ──────────────────────────────────────────────────────────
+# Trust only the loopback + the Docker bridge for relaying.
+mynetworks = 127.0.0.0/8, 172.16.0.0/12
+
+# ─── Mail size & queue ─────────────────────────────────────────────────
+message_size_limit  = 26214400          # 25 MB
+mailbox_size_limit  = 0
+recipient_delimiter = +
+
+# ─── TLS (inbound) ─────────────────────────────────────────────────────
+smtpd_tls_security_level = may
+smtpd_tls_cert_file      = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file       = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_protocols      = !SSLv2, !SSLv3, !TLSv1, !TLSv1.1
+smtpd_tls_ciphers        = high
+
+# ─── Restrictions ──────────────────────────────────────────────────────
+smtpd_helo_required = yes
+
+smtpd_recipient_restrictions =
+    permit_mynetworks
+    reject_unauth_destination
+    reject_unknown_recipient_domain
+    permit
+
+# ─── Rspamd milter (where the real work happens) ───────────────────────
+# proxy filter — Rspamd inspects, scores, can rewrite headers, and (in
+# enforce mode) reject before queue.
+smtpd_milters     = inet:rspamd:11332
+non_smtpd_milters = $smtpd_milters
+milter_default_action  = accept
+milter_protocol        = 6
+milter_mail_macros     = i {auth_authen}
+milter_rcpt_macros     = i {rcpt_addr}
+
+# ─── Logging ───────────────────────────────────────────────────────────
+maillog_file = /dev/stdout

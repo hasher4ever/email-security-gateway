@@ -1,0 +1,9 @@
+# Hourly: pull URL/domain reputation feeds (GSB, PhishTank, OpenPhish)
+0 * * * * cd /app && /usr/local/bin/python feed_pull.py >> /var/log/feed_pull.log 2>&1
+
+# Weekly Sunday 03:00: refresh dnstwist typosquat list against TRUSTED_DOMAINS
+0 3 * * 0 cd /app && /usr/local/bin/python dnstwist_runner.py >> /var/log/dnstwist.log 2>&1
+
+# On boot, run both once so the maps are populated immediately
+@reboot cd /app && /usr/local/bin/python feed_pull.py >> /var/log/feed_pull.log 2>&1
+@reboot sleep 30 && cd /app && /usr/local/bin/python dnstwist_runner.py >> /var/log/dnstwist.log 2>&1

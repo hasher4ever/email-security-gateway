@@ -1,0 +1,22 @@
+# Attachment extensions that are almost never legitimate in trucking/back-office
+# email. Rate confirmations are PDFs, settlement statements are PDF/CSV, broker
+# packets are PDFs. Anything below is a strong signal.
+/\.exe$/i
+/\.scr$/i
+/\.lnk$/i
+/\.iso$/i
+/\.img$/i
+/\.jar$/i
+/\.hta$/i
+/\.vbs$/i
+/\.ps1$/i
+/\.bat$/i
+/\.cmd$/i
+/\.js$/i
+/\.wsf$/i
+/\.msi$/i
+/\.dll$/i
+/\.cpl$/i
+/\.docm$/i
+/\.xlsm$/i
+/\.pptm$/i

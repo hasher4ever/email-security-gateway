@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  rspamd-configtest:
+    name: rspamadm configtest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Rspamd image
+        run: docker build -t esg-rspamd:ci ./rspamd
+      - name: Run configtest
+        run: docker run --rm esg-rspamd:ci rspamadm configtest
+
+  python-lint:
+    name: Python lint (feeds)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ruff
+        run: pip install ruff==0.6.9
+      - name: Lint
+        run: ruff check feeds/
+
+  compose-validate:
+    name: docker compose config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render compose
+        run: |
+          cp .env.example .env
+          docker compose config > /dev/null
+
+  postfix-syntax:
+    name: postfix template syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Render template + check
+        run: |
+          cd postfix
+          export GATEWAY_HOSTNAME=mail.example.com
+          export CORP_DOMAIN=example.com
+          envsubst < main.cf.template > main.cf
+          # Compile the template and let postfix parse it
+          docker run --rm \
+            -v "$PWD":/work \
+            -w /work \
+            debian:12-slim \
+            bash -c "apt-get update -qq && apt-get install -qq -y postfix > /dev/null && postconf -c /work -n > /dev/null"

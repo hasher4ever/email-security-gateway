@@ -1,0 +1,143 @@
+# Email Security Gateway — Phase 1 stack (shadow mode by default)
+#
+# Bring up:   docker compose up -d
+# Tail logs:  docker compose logs -f rspamd
+#
+# Phase 2 adds the detonator service (commented section below).
+# Phase 3 adds gophish + admin-ui.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  postfix:
+    build: ./postfix
+    restart: unless-stopped
+    hostname: ${GATEWAY_HOSTNAME}
+    environment:
+      CORP_DOMAIN: ${CORP_DOMAIN}
+      GATEWAY_MODE: ${GATEWAY_MODE}
+      SHADOW_BCC: ${SHADOW_BCC}
+    ports:
+      - "25:25"      # MX-facing SMTP
+      - "587:587"    # submission (auth required)
+    volumes:
+      - postfix-spool:/var/spool/postfix
+    depends_on:
+      - rspamd
+
+  rspamd:
+    build: ./rspamd
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      REDIS_HOST: ${REDIS_HOST}
+      DETONATOR_URL: ${DETONATOR_URL}
+      DETONATOR_TIMEOUT_SEC: ${DETONATOR_TIMEOUT_SEC}
+      GATEWAY_MODE: ${GATEWAY_MODE}
+    volumes:
+      - rspamd-data:/var/lib/rspamd
+      - ./rspamd/lists:/etc/rspamd/lists:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  feeds:
+    build: ./feeds
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      GSB_API_KEY: ${GSB_API_KEY}
+      PHISHTANK_APP_KEY: ${PHISHTANK_APP_KEY}
+      OPENPHISH_API_KEY: ${OPENPHISH_API_KEY}
+      TRUSTED_DOMAINS: ${TRUSTED_DOMAINS}
+    volumes:
+      - ./rspamd/lists:/out/lists
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ─── Phase 2 (uncomment when ready) ────────────────────────────────────
+  # detonator:
+  #   build: ./detonator
+  #   restart: unless-stopped
+  #   read_only: true
+  #   cap_drop: [ALL]
+  #   security_opt:
+  #     - no-new-privileges:true
+  #   tmpfs:
+  #     - /tmp
+  #     - /var/run
+  #   environment:
+  #     PORT: 7000
+  #     TIMEOUT_SEC: ${DETONATOR_TIMEOUT_SEC}
+  #     USER_AGENT: ${DETONATOR_USER_AGENT}
+  #     REDIS_HOST: ${REDIS_HOST}
+  #   networks:
+  #     - detonator-egress    # isolated egress-only network, no internal access
+
+  # ─── Phase 3 (uncomment when ready) ────────────────────────────────────
+  # gophish:
+  #   image: gophish/gophish:latest
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3333:3333"   # admin UI
+  #     - "8080:8080"   # phishing landing pages
+  #   volumes:
+  #     - gophish-data:/opt/gophish/data
+  #     - ./gophish/config.json:/opt/gophish/config.json:ro
+
+  # admin-ui:
+  #   build: ./admin-ui
+  #   restart: unless-stopped
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     POSTGRES_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+  #   depends_on:
+  #     - postgres
+
+volumes:
+  postgres-data:
+  redis-data:
+  postfix-spool:
+  rspamd-data:
+  # gophish-data:
+
+# networks:
+#   detonator-egress:
+#     driver: bridge
+#     internal: false   # outbound web allowed; isolated from default network

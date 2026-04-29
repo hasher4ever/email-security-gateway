@@ -1,0 +1,29 @@
+# Reference list — actual values come from TRUSTED_DOMAINS env var (comma-sep).
+# Use this file to remember what *should* be in the env var.
+
+# Our own
+tms360.io
+
+# Load boards
+dat.com
+truckstop.com
+123loadboard.com
+sylectus.com
+
+# ELD / telematics / tools used daily
+samsara.com
+keeptruckin.com
+motive.com
+
+# Major brokers — extend as you onboard
+chrobinson.com
+coyote.com
+tql.com
+landstar.com
+ch.robinson.com
+jbhunt.com
+
+# Banking / factoring (high-value phishing targets)
+triumphpay.com
+rtsfinancial.com
+ots.com

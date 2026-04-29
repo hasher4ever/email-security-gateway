@@ -1,0 +1,21 @@
+# Sender-domain allowlist. Add real broker / load-board / partner domains here
+# to prevent false positives once enforcement is on. Reviewed by security team.
+# Format: one domain per line, comments allowed.
+
+# Load boards (real domains — don't confuse with typosquat list)
+dat.com
+truckstop.com
+123loadboard.com
+
+# Major brokers — extend as you onboard
+# chrobinson.com
+# coyote.com
+# tql.com
+
+# ELD / telematics
+samsara.com
+keeptruckin.com
+motive.com
+
+# Internal tools
+tms360.io
