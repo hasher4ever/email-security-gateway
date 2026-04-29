@@ -1,7 +1,5 @@
 # Architecture
 
-Tracking ticket: [Jira DEV-581](https://infomaxmgt-team.atlassian.net/browse/DEV-581) (local file `jira_vault/tickets/DEV-585.md`).
-
 ## Component diagram
 
 ```
