@@ -2,6 +2,10 @@
 
 For the on-call security operator. Bookmark this page.
 
+## Setup
+
+- **Seed demo data for the admin-ui** (before live mail flow): `psql $POSTGRES_URL -f sql/seed.sql`. Idempotent; safe to re-run.
+
 ## Daily
 
 1. Open the quarantine BCC mailbox. Skim subject lines.

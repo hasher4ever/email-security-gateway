@@ -60,6 +60,33 @@ jobs:
       - name: Test templates
         run: python -m pytest gophish/templates/_test_templates.py -q
 
+  admin-ui-server-tests:
+    name: admin-ui server tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: admin-ui/server/package-lock.json
+      - run: cd admin-ui/server && npm ci
+      - run: cd admin-ui/server && npm test
+
+  admin-ui-web-tests:
+    name: admin-ui web tests (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: admin-ui/web/package-lock.json
+      - run: cd admin-ui/web && npm ci
+      - run: cd admin-ui/web && npx playwright install --with-deps chromium
+      - run: cd admin-ui/web && npm test
+
   compose-validate:
     name: docker compose config
     runs-on: ubuntu-latest

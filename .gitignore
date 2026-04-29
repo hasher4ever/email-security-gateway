@@ -9,5 +9,11 @@ detonator/.venv/
 .pytest_cache/
 gophish/data/
 node_modules/
+admin-ui/public/
+admin-ui/server/dist/
+admin-ui/web/dist/
+admin-ui/web/test-results/
+admin-ui/web/playwright-report/
+*.tsbuildinfo
 __pycache__/
 *.pyc
