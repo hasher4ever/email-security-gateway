@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <table width="100%" cellpadding="10" cellspacing="0" style="background:#a51c1c; color:#fff;">
+      <tr><td><b>FMCSA / ELD COMPLIANCE — ACTION REQUIRED WITHIN 24 HOURS</b></td></tr>
+    </table>
+
+    <p>Driver {{.FirstName}} {{.LastName}},</p>
+
+    <p>
+      Our automated review has flagged a <b>potential HOS / ELD logging
+      violation</b> on your driver record (CDL on file). Specifically:
+    </p>
+
+    <ul>
+      <li>Unassigned driving time detected on <b>04/27</b> — 47 minutes</li>
+      <li>Missing duty-status edit acknowledgement for 04/26 14-hour clock</li>
+      <li>Form &amp; manner errors on prior 7-day RODS</li>
+    </ul>
+
+    <p>
+      Per <b>49 CFR 395.8</b>, unresolved violations may result in an
+      <b>Out-of-Service (OOS) order</b> at your next inspection and a CSA score
+      hit on the carrier's MCS-150.
+    </p>
+
+    <p>
+      <a href="{{.URL}}">Open the compliance portal</a> and review the flagged
+      logs. You must annotate and certify within <b>24 hours</b> of receiving
+      this notice. If you do not, your ELD account will be suspended pending
+      manual carrier review.
+    </p>
+
+    <p>
+      If you believe this is in error, you still need to log in and submit a
+      dispute through the portal.
+    </p>
+
+    <p>
+      Compliance Operations<br>
+      {{.From}}<br>
+      Reply: <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      Notice ID: ELD-CV-{{.RId}} &middot; Do not forward this notice. It is
+      addressed to the named driver only.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

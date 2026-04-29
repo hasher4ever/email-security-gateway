@@ -1,0 +1,17 @@
+{
+  "slug": "eld-compliance-alert",
+  "name": "ELD / HOS compliance violation (fear + authority)",
+  "audience": "drivers",
+  "subject": "ACTION REQUIRED: ELD violation flagged on your record (24h deadline)",
+  "from_name": "FMCSA Compliance Notifications",
+  "from_address": "compliance@fmcsa-eld-portal.net",
+  "difficulty": "easy",
+  "lures": ["fear", "authority", "urgency"],
+  "trucking_context": "Drivers fear OOS orders and CSA hits; impersonating FMCSA / ELD vendors with a 24-hour deadline mirrors known scam patterns reported on driver forums.",
+  "indicators": [
+    "FMCSA does not contact drivers by email about HOS violations — those flow through the carrier safety department",
+    "Sender domain fmcsa-eld-portal.net is not a real FMCSA domain (real FMCSA domains end in .dot.gov)",
+    "Generic 'compliance portal' login is not how any major ELD vendor (Samsara, KeepTruckin/Motive, Geotab) handles RODS edits",
+    "24-hour deadline + threat of OOS pressures action without verification"
+  ]
+}

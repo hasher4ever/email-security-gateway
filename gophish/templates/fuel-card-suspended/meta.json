@@ -1,0 +1,17 @@
+{
+  "slug": "fuel-card-suspended",
+  "name": "Fuel card suspended for unusual activity (fear + urgency)",
+  "audience": "drivers",
+  "subject": "Action needed: fuel card **** 4471 suspended (unusual charge)",
+  "from_name": "Comdata Fraud Operations",
+  "from_address": "fraud-alerts@comdata-driver-portal.net",
+  "difficulty": "easy",
+  "lures": ["fear", "urgency", "authority"],
+  "trucking_context": "Drivers depend on their fuel card to keep moving; a suspended card stranded at a pump is an immediate operational threat that drives panic-clicks, and Comdata / EFS / WEX impersonation has been reported widely.",
+  "indicators": [
+    "Sender domain comdata-driver-portal.net is not comdata.com",
+    "Fuel-card vendors typically alert via SMS or in-app notification, not generic email links",
+    "Asks for company login on a non-company domain",
+    "Fake transaction details (TA Effingham at 03:14) are easy to fabricate but cannot be verified without the card vendor's real app"
+  ]
+}

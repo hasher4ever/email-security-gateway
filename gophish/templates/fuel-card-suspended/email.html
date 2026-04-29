@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <table width="100%" cellpadding="10" cellspacing="0" style="background:#b03030; color:#fff;">
+      <tr><td><b>Fuel Card SUSPENDED — unusual activity detected</b></td></tr>
+    </table>
+
+    <p>Hi {{.FirstName}},</p>
+
+    <p>
+      Your fleet fuel card ending <b>**** 4471</b> was temporarily suspended
+      after our fraud system flagged a possible unauthorized charge:
+    </p>
+
+    <ul>
+      <li>Attempted purchase: <b>$842.10</b> at a TA Travel Center in
+        Effingham, IL</li>
+      <li>Time: 03:14 local</li>
+      <li>Card was not present at the carrier's last known dispatch location</li>
+    </ul>
+
+    <p>
+      Until the suspension is lifted, the card will be declined at every
+      truck-stop and pump. To get back on the road today,
+      <a href="{{.URL}}">log in to the fuel-card portal</a> and confirm the
+      transaction was not yours. Reactivation is instant once the dispute is
+      filed.
+    </p>
+
+    <p>
+      If you do recognize the charge, you can also confirm it from the same
+      portal and the suspension will lift immediately.
+    </p>
+
+    <p>
+      Fleet Card Fraud Operations<br>
+      {{.From}}<br>
+      <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      Case: FC-{{.RId}} &middot; Do not reply with card numbers or PINs by email.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

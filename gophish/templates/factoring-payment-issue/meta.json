@@ -1,0 +1,18 @@
+{
+  "slug": "factoring-payment-issue",
+  "name": "Factoring advance on hold (money + urgency)",
+  "audience": "accounting",
+  "subject": "Factoring advance on hold — action needed to release $18,420.55",
+  "from_name": "TAFS Funding Operations",
+  "from_address": "funding@tafs-carrier-portal.co",
+  "difficulty": "hard",
+  "lures": ["money", "urgency", "fear"],
+  "trucking_context": "Small carriers run cash-tight on factored advances; an unexpected hold that threatens Friday payroll is an emotionally loaded pretext that lookalike portals exploit against accounting teams.",
+  "indicators": [
+    "Sender domain tafs-carrier-portal.co is not tafs.com",
+    "Real factoring companies have direct AR contacts on file — funding holds are usually phoned, not emailed cold",
+    "Specific dollar amount and load numbers add false credibility but are easy to fabricate",
+    "'Phone disputes are queued behind portal submissions' is engineered to defeat out-of-band verification",
+    "Friday payroll pressure is a textbook urgency lure"
+  ]
+}

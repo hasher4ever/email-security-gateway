@@ -1,0 +1,17 @@
+{
+  "slug": "settlement-statement-ready",
+  "name": "Weekly settlement ready (money lure)",
+  "audience": "drivers",
+  "subject": "{{.FirstName}}, your weekly settlement is ready — net $1,847.62",
+  "from_name": "Driver Payroll",
+  "from_address": "payroll@driver-settlements-portal.co",
+  "difficulty": "medium",
+  "lures": ["money", "urgency"],
+  "trucking_context": "Drivers eagerly check weekly settlements; an email that previews a specific net deposit and asks them to log in to dispute or download replicates real payroll software notifications.",
+  "indicators": [
+    "Sender domain driver-settlements-portal.co does not match any real payroll system",
+    "Real settlements are usually posted directly to the carrier's TMS or the driver app — not a generic web portal",
+    "Asks for company SSO credentials but is not on the company domain",
+    "ACH cutoff pressure is artificial — payroll runs on a fixed weekly schedule"
+  ]
+}

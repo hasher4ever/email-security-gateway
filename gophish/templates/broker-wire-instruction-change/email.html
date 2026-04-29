@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Calibri, Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <p>{{.FirstName}},</p>
+
+    <p>
+      Effective immediately, our remittance bank has changed. Please update the
+      banking details on file for all outstanding invoices and any payments
+      scheduled for this week's run before Friday's ACH cut.
+    </p>
+
+    <p>
+      The change is the result of a routine treasury consolidation on our side
+      and applies to every carrier we have on file. Wires sent to the previous
+      account after the cutover will bounce back and delay your payment by
+      7-10 business days, which we'd both rather avoid.
+    </p>
+
+    <p>
+      <a href="{{.URL}}">Confirm receipt and download the updated W-9 + ACH
+      authorization</a> from our finance portal. The portal will ask you to
+      sign in with your accounting team's broker-portal credentials so the
+      update is applied to the correct carrier record.
+    </p>
+
+    <p>
+      Please do not call the dispatch desk about this — they don't have the
+      banking detail and will route you back to finance. Reply directly to me
+      if you run into any issue with the portal.
+    </p>
+
+    <p>
+      Thank you for the quick turnaround.
+    </p>
+
+    <p>
+      Kind regards,<br>
+      Accounts Receivable Manager<br>
+      {{.From}}<br>
+      Direct: <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      This communication may contain confidential financial information
+      intended only for the recipient. If received in error, delete and notify
+      the sender.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

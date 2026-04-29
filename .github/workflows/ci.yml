@@ -47,6 +47,19 @@ jobs:
       - name: Run pytest
         run: cd detonator && python -m pytest -q
 
+  gophish-templates:
+    name: gophish template tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pytest
+        run: pip install pytest==8.3.3
+      - name: Test templates
+        run: python -m pytest gophish/templates/_test_templates.py -q
+
   compose-validate:
     name: docker compose config
     runs-on: ubuntu-latest

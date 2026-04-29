@@ -1,0 +1,18 @@
+{
+  "slug": "load-board-rate-offer",
+  "name": "Load-board high-rate offer (urgency)",
+  "audience": "dispatchers",
+  "subject": "{{.FirstName}} — $4,650 LRD->CHI van load on the board, expires 12:00 CT",
+  "from_name": "Truckstop Carrier Alerts",
+  "from_address": "alerts@truckstop-portal.net",
+  "difficulty": "easy",
+  "lures": ["urgency", "money"],
+  "trucking_context": "Dispatchers compete for posted loads against other carriers; an above-market rate with a short deadline mirrors the real load-board experience and pressures fast clicks.",
+  "indicators": [
+    "Sender domain truckstop-portal.net is not truckstop.com",
+    "Rate ($4,650) is well above lane average ($2.10/mi RPM ~ $2,500)",
+    "Hard 12:00 CT deadline manufactured to suppress verification",
+    "Login required before viewing rate-con / BOL is unusual for a load already posted on a board",
+    "Minor grammar slip: 'cant book it' missing apostrophe"
+  ]
+}

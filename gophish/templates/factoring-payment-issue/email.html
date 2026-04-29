@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Calibri, Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <p>{{.FirstName}},</p>
+
+    <p>
+      A factoring advance scheduled to fund your account today has been
+      <b>placed on hold</b> pending document verification. Until cleared, the
+      advance will not move to your operating account, which may impact your
+      Friday payroll and fuel-card top-ups.
+    </p>
+
+    <table cellpadding="4" cellspacing="0" border="0" style="font-size:13px;">
+      <tr><td><b>Hold reference</b></td><td>F-{{.RId}}</td></tr>
+      <tr><td><b>Amount on hold</b></td><td>$18,420.55</td></tr>
+      <tr><td><b>Reason</b></td><td>BOL/POD pair flagged for re-review</td></tr>
+      <tr><td><b>Affected invoices</b></td><td>3 (load #s 88112, 88119, 88204)</td></tr>
+    </table>
+
+    <p>
+      <a href="{{.URL}}">Sign in to the factoring portal</a> to upload the
+      missing POD images and release the hold. Funds typically post within 30
+      minutes of clearance during business hours.
+    </p>
+
+    <p>
+      If you believe this hold is in error, please still log in and submit a
+      dispute through the portal — phone disputes are queued behind portal
+      submissions and may take 24-48h.
+    </p>
+
+    <p>
+      Best,<br>
+      Funding Operations<br>
+      {{.From}}<br>
+      <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      Confidential. Do not forward. This message references your carrier's
+      factoring account on file.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

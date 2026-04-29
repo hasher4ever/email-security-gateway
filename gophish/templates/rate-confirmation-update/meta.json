@@ -1,0 +1,17 @@
+{
+  "slug": "rate-confirmation-update",
+  "name": "Revised rate confirmation from broker (typosquat)",
+  "audience": "dispatchers",
+  "subject": "REVISED rate-con #RC-2241885 — please acknowledge",
+  "from_name": "C.H. Robinson Logistics",
+  "from_address": "logistics@chr0binson.com",
+  "difficulty": "medium",
+  "lures": ["authority", "urgency", "money"],
+  "trucking_context": "Brokers routinely email revised rate confirmations as PDF attachments or links; a typosquat domain (chr0binson.com vs chrobinson.com) is the canonical broker-impersonation pattern that has hit carrier offices for years.",
+  "indicators": [
+    "From-domain chr0binson.com substitutes a zero for the letter 'o'",
+    "Real rate-cons are typically attached PDFs, not portal-login links",
+    "No prior thread or reference to an existing rate-con",
+    "Threat of re-tendering pressures the dispatcher to act before verifying"
+  ]
+}

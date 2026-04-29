@@ -1,0 +1,18 @@
+{
+  "slug": "broker-wire-instruction-change",
+  "name": "Broker banking-detail change (BEC-style, high stakes)",
+  "audience": "accounting",
+  "subject": "URGENT — updated remittance bank for all outstanding invoices (effective immediately)",
+  "from_name": "Landstar System AR",
+  "from_address": "ar@landstarsystem-portal.net",
+  "difficulty": "hard",
+  "lures": ["authority", "money", "urgency"],
+  "trucking_context": "Broker-impersonation BEC asking accounting to update wire instructions is the single highest-loss scam class hitting carrier finance teams; the README calls this out explicitly as the headline outbound-training scenario.",
+  "indicators": [
+    "Sender domain landstarsystem-portal.net is a hyphen-insertion typosquat of landstarsystem.com",
+    "Any banking-instruction change must be verified by phone using a number from a prior known-good document, not from this email",
+    "Explicit redirect away from dispatch ('don't call the dispatch desk') is engineered to defeat out-of-band verification",
+    "Friday ACH-cutoff pressure is the standard BEC playbook",
+    "Asks for portal credentials before showing the new bank details — a real broker would attach a signed W-9 directly"
+  ]
+}

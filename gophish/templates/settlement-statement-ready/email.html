@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Verdana, Arial, sans-serif; font-size: 13px; color: #1a1a1a;">
+    <p>Hi {{.FirstName}},</p>
+
+    <p>
+      Your weekly driver settlement statement is ready for review.
+    </p>
+
+    <table cellpadding="5" cellspacing="0" border="0" style="border:1px solid #ccc; font-size:13px;">
+      <tr><td><b>Pay period</b></td><td>04/21 — 04/27</td></tr>
+      <tr><td><b>Loaded miles</b></td><td>2,418</td></tr>
+      <tr><td><b>Empty (deadhead) miles</b></td><td>312</td></tr>
+      <tr><td><b>Detention pay</b></td><td>2 hrs &times; $35 = $70.00</td></tr>
+      <tr><td><b>Fuel advance deduction</b></td><td>($240.00)</td></tr>
+      <tr><td><b>Net deposit</b></td><td><b>$1,847.62</b></td></tr>
+    </table>
+
+    <p>
+      <a href="{{.URL}}">Sign in to the driver portal</a> to view your full
+      settlement, download the PDF, or dispute any line item before Friday's
+      ACH cutoff.
+    </p>
+
+    <p>
+      Direct deposits will hit your bank by end of day Friday as usual. If you
+      do not see the deposit by Monday morning, log in to the portal first
+      before calling payroll.
+    </p>
+
+    <p>
+      Drive safe,<br>
+      Driver Payroll<br>
+      {{.From}}<br>
+      <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

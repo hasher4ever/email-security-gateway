@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Arial, sans-serif; font-size: 14px; color: #222;">
+    <p>Hi {{.FirstName}},</p>
+
+    <p>
+      A high-paying load just hit the board and matches a lane your office has
+      booked before. Posting carrier wants it covered today, first-come-first-served.
+    </p>
+
+    <table cellpadding="6" cellspacing="0" border="0" style="border:1px solid #ccc;">
+      <tr><td><b>Origin</b></td><td>Laredo, TX</td></tr>
+      <tr><td><b>Destination</b></td><td>Chicago, IL</td></tr>
+      <tr><td><b>Equipment</b></td><td>53' Dry Van</td></tr>
+      <tr><td><b>Weight</b></td><td>41,800 lbs</td></tr>
+      <tr><td><b>Pickup</b></td><td>Today, 14:00 CT</td></tr>
+      <tr><td><b>Posted Rate</b></td><td><b>$4,650 ALL-IN</b> (avg lane RPM is running ~$2.10)</td></tr>
+      <tr><td><b>Deadhead</b></td><td>22 mi from your last drop</td></tr>
+    </table>
+
+    <p>
+      Two carriers have already viewed it. To lock it in,
+      <a href="{{.URL}}">log in to the load-board portal</a>
+      and accept before 12:00 CT — after that it auto-releases.
+    </p>
+
+    <p>
+      BOL and rate-con will be ready in the portal once you accept.
+      Reply to this thread if you cant book it and we'll release back to the queue.
+    </p>
+
+    <p>
+      Thanks,<br>
+      Dispatch Desk<br>
+      {{.From}}<br>
+      Reply to: {{.Email}}
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      You are receiving this because your office is registered as an active carrier.
+      Manage notifications in your portal preferences.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

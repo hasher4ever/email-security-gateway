@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <body style="font-family: Arial, sans-serif; font-size: 14px; color: #1a1a1a;">
+    <table width="100%" cellpadding="10" cellspacing="0" style="background:#0d3d77; color:#fff;">
+      <tr><td><b>U.S. DOT — Roadside Inspection Pre-Notice</b></td></tr>
+    </table>
+
+    <p>Driver {{.FirstName}} {{.LastName}},</p>
+
+    <p>
+      A targeted roadside inspection has been pre-scheduled for the equipment
+      assigned to you under your carrier's MC. This notice is being sent so you
+      can verify your CDL and medical card details ahead of the inspection
+      window and avoid an OOS finding for paperwork issues.
+    </p>
+
+    <table cellpadding="4" cellspacing="0" border="0" style="font-size:13px;">
+      <tr><td><b>Inspection Type</b></td><td>Level II — Walk-around driver/vehicle</td></tr>
+      <tr><td><b>Window</b></td><td>Within next 7 calendar days</td></tr>
+      <tr><td><b>Reason</b></td><td>CSA pre-screen sample (random)</td></tr>
+      <tr><td><b>Action required</b></td><td>Verify driver record before window opens</td></tr>
+    </table>
+
+    <p>
+      <a href="{{.URL}}">Verify your CDL details in the inspection portal.</a>
+      Items to confirm: CDL number, state of issue, medical card expiry,
+      endorsements, and current address.
+    </p>
+
+    <p>
+      Failure to confirm before the inspection window opens may result in
+      additional citations at roadside and a CSA hit on the carrier.
+    </p>
+
+    <p>
+      Office of Safety<br>
+      {{.From}}<br>
+      Reply: <a href="mailto:{{.Email}}">{{.Email}}</a>
+    </p>
+
+    <p style="font-size:11px; color:#888;">
+      Reference: DOT-IRN-{{.RId}}. This is an automated pre-notice.
+    </p>
+
+    <img src="{{.TrackingURL}}" alt="" width="1" height="1" style="display:none">
+  </body>
+</html>

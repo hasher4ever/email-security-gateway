@@ -1,0 +1,17 @@
+{
+  "slug": "dot-inspection-notice",
+  "name": "Spoofed DOT inspection pre-notice (fear + authority)",
+  "audience": "drivers",
+  "subject": "DOT Roadside Inspection Pre-Notice — verify CDL details",
+  "from_name": "DOT Office of Safety",
+  "from_address": "safety-notices@us-dot-inspection.net",
+  "difficulty": "medium",
+  "lures": ["fear", "authority"],
+  "trucking_context": "Drivers respect DOT correspondence and fear OOS findings during inspections; pre-inspection emails are a known scam vector targeting drivers' CDL and medical-card data.",
+  "indicators": [
+    "Real DOT does not pre-warn drivers of roadside inspections — that defeats the point of a roadside inspection",
+    "Sender domain us-dot-inspection.net is not on dot.gov",
+    "Asks for CDL number / endorsements via a generic web form",
+    "Pressure framing ('avoid OOS finding') is a classic phish tactic"
+  ]
+}
